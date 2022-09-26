@@ -9,16 +9,22 @@ public class ProjectSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/myAccount").authenticated()
+//                .antMatchers("/myBalance").authenticated()
+//                .antMatchers("/myLoans").authenticated()
+//                .antMatchers("/myCards").authenticated()
+//                .antMatchers("/contacts").permitAll()
+//                .antMatchers("/notices").permitAll()
+//                .and()
+//                .formLogin().and()
+//                .httpBasic();
+
         http
-                .authorizeRequests()
-                .antMatchers("/myAccount").authenticated()
-                .antMatchers("/myBalance").authenticated()
-                .antMatchers("/myLoans").authenticated()
-                .antMatchers("/myCards").authenticated()
-                .antMatchers("/contacts").permitAll()
-                .antMatchers("/notices").permitAll()
-                .and()
-                .formLogin().and()
-                .httpBasic();
+                .authorizeRequests().anyRequest().denyAll()
+                .and().formLogin()
+                .and().httpBasic();
     }
 }
